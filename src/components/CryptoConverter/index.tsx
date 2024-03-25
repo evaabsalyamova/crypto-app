@@ -7,6 +7,8 @@ import {
   Stack,
   Box,
   IconButton,
+  FormControl,
+  styled,
 } from "@mui/material";
 import SwapVertRoundedIcon from "@mui/icons-material/SwapVertRounded";
 import useConversion from "../../hooks/useConversion";
@@ -92,30 +94,42 @@ const CryptoConverter = () => {
     return <>{error}</>;
   }
 
+  const StyledTextField = styled(TextField)({
+    "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+      display: "none",
+    },
+    "& input[type=number]": {
+      MozAppearance: "textfield",
+    },
+  });
+
   return (
     <Box
       component="section"
       sx={{
         width: 300,
-        height: 400,
-        m: "auto",
-        mt: 10,
+        height: 350,
         border: "1px solid grey",
         borderRadius: 5,
       }}
     >
-      <Stack sx={{ gap: 2 }}>
-        <Select
-          value={firstFieldCurrency}
-          onChange={(e) => {
-            setFirstFieldCurrency(e.target.value as Currency);
-          }}
-        >
-          <MenuItem value="bitcoin">BTC</MenuItem>
-          <MenuItem value="ethereum">ETH</MenuItem>
-          <MenuItem value="usd">USDT</MenuItem>
-        </Select>
-        <TextField
+      <Stack sx={{ gap: 2, minWidth: 120 }}>
+        <FormControl sx={{ m: 1, minWidth: 12, width: "80px" }} size="small">
+          <Select
+            labelId="demo-select-small-label"
+            id="demo-select-small"
+            value={firstFieldCurrency}
+            onChange={(e) => {
+              setFirstFieldCurrency(e.target.value as Currency);
+            }}
+          >
+            <MenuItem value="bitcoin">BTC</MenuItem>
+            <MenuItem value="ethereum">ETH</MenuItem>
+            <MenuItem value="usd">USDT</MenuItem>
+          </Select>
+        </FormControl>
+
+        <StyledTextField
           type="number"
           value={firstFieldAmount}
           onChange={(e) => {
@@ -125,8 +139,11 @@ const CryptoConverter = () => {
           }}
           sx={{
             "& .MuiOutlinedInput-notchedOutline": {
-              border: "1px solid grey",
+              border: "1px solid black",
               borderRadius: 5,
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              border: "1px solid black",
             },
           }}
         />
@@ -140,20 +157,23 @@ const CryptoConverter = () => {
           <SwapVertRoundedIcon />
         </IconButton>
       )}
-
       <Stack sx={{ gap: 2 }}>
-        <Select
-          value={secondFieldCurrency}
-          onChange={(e) => {
-            // as Currency тк мы уверены что другого value быть не может
-            setSecondFieldCurrency(e.target.value as Currency);
-          }}
-        >
-          <MenuItem value="bitcoin">BTC</MenuItem>
-          <MenuItem value="ethereum">ETH</MenuItem>
-          <MenuItem value="usd">USDT</MenuItem>
-        </Select>
-        <TextField
+        <FormControl sx={{ m: 1, minWidth: 2, width: "80px" }} size="small">
+          <Select
+            labelId="demo-select-small-label"
+            value={secondFieldCurrency}
+            id="demo-select-small"
+            onChange={(e) => {
+              // as Currency тк мы уверены что другого value быть не может
+              setSecondFieldCurrency(e.target.value as Currency);
+            }}
+          >
+            <MenuItem value="bitcoin">BTC</MenuItem>
+            <MenuItem value="ethereum">ETH</MenuItem>
+            <MenuItem value="usd">USDT</MenuItem>
+          </Select>
+        </FormControl>
+        <StyledTextField
           type="number"
           variant="outlined"
           value={secondFieldAmount}
@@ -163,8 +183,11 @@ const CryptoConverter = () => {
           }}
           sx={{
             "& .MuiOutlinedInput-notchedOutline": {
-              border: "1px solid grey",
+              border: "1px solid black",
               borderRadius: 5,
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              border: "1px solid black",
             },
           }}
         />
