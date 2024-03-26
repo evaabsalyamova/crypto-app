@@ -120,8 +120,8 @@ const CryptoConverter = () => {
         borderRadius: 5,
       }}
     >
-      <Stack sx={{ gap: 2, minWidth: 120 }}>
-        <FormControl sx={{ m: 1, minWidth: 12, width: "80px" }} size="small">
+      <Stack sx={{ gap: 2 }}>
+        <FormControl sx={{ m: 1, minWidth: 6, width: "120px" }} size="small">
           <Select
             labelId="demo-select-small-label"
             id="demo-select-small"
@@ -180,7 +180,7 @@ const CryptoConverter = () => {
         </IconButton>
       )}
       <Stack sx={{ gap: 2 }}>
-        <FormControl sx={{ m: 1, minWidth: 2, width: "100px" }} size="small">
+        <FormControl sx={{ m: 1, minWidth: 6, width: "120px" }} size="small">
           <Select
             labelId="demo-select-small-label"
             value={secondFieldCurrency}
@@ -190,9 +190,24 @@ const CryptoConverter = () => {
               setSecondFieldCurrency(e.target.value as Currency);
             }}
           >
-            <MenuItem value="bitcoin">BTC</MenuItem>
-            <MenuItem value="ethereum">ETH</MenuItem>
-            <MenuItem value="usd">USDT</MenuItem>
+            <MenuItem value="bitcoin">
+              <ListItemIcon>
+                <Icon iconName="btc" />
+                BTC
+              </ListItemIcon>
+            </MenuItem>
+            <MenuItem value="ethereum">
+              <ListItemIcon>
+                <Icon iconName="eth" />
+                ETH
+              </ListItemIcon>
+            </MenuItem>
+            <MenuItem value="usd">
+              <ListItemIcon>
+                <Icon iconName="usdt" />
+                USDT
+              </ListItemIcon>
+            </MenuItem>
           </Select>
         </FormControl>
         <StyledTextField
