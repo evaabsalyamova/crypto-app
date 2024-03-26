@@ -9,9 +9,16 @@ import {
   IconButton,
   FormControl,
   styled,
+  ListItemIcon,
 } from "@mui/material";
 import SwapVertRoundedIcon from "@mui/icons-material/SwapVertRounded";
 import useConversion from "../../hooks/useConversion";
+import { IconNames } from "../../resources/icons";
+import Icon from "./Icon";
+
+export interface IProps {
+  iconName: IconNames;
+}
 
 enum InputField {
   FIRST,
@@ -123,9 +130,24 @@ const CryptoConverter = () => {
               setFirstFieldCurrency(e.target.value as Currency);
             }}
           >
-            <MenuItem value="bitcoin">BTC</MenuItem>
-            <MenuItem value="ethereum">ETH</MenuItem>
-            <MenuItem value="usd">USDT</MenuItem>
+            <MenuItem value="bitcoin">
+              <ListItemIcon>
+                <Icon iconName="btc" />
+                BTC
+              </ListItemIcon>
+            </MenuItem>
+            <MenuItem value="ethereum">
+              <ListItemIcon>
+                <Icon iconName="eth" />
+                ETH
+              </ListItemIcon>
+            </MenuItem>
+            <MenuItem value="usd">
+              <ListItemIcon>
+                <Icon iconName="usdt" />
+                USDT
+              </ListItemIcon>
+            </MenuItem>
           </Select>
         </FormControl>
 
@@ -158,7 +180,7 @@ const CryptoConverter = () => {
         </IconButton>
       )}
       <Stack sx={{ gap: 2 }}>
-        <FormControl sx={{ m: 1, minWidth: 2, width: "80px" }} size="small">
+        <FormControl sx={{ m: 1, minWidth: 2, width: "100px" }} size="small">
           <Select
             labelId="demo-select-small-label"
             value={secondFieldCurrency}
@@ -175,13 +197,15 @@ const CryptoConverter = () => {
         </FormControl>
         <StyledTextField
           type="number"
-          variant="outlined"
           value={secondFieldAmount}
           onChange={(e) => {
             setInputField(InputField.SECOND);
             setSecondFieldAmount(Number(e.target.value));
           }}
           sx={{
+            "& .MuiFilledInput-root": {
+              background: "rgb(232, 241, 250)",
+            },
             "& .MuiOutlinedInput-notchedOutline": {
               border: "1px solid black",
               borderRadius: 5,
