@@ -150,7 +150,6 @@ const CryptoConverter = () => {
             </MenuItem>
           </Select>
         </FormControl>
-
         <StyledTextField
           type="number"
           value={firstFieldAmount}
@@ -175,9 +174,17 @@ const CryptoConverter = () => {
           <CircularProgress />
         </Stack>
       ) : (
-        <IconButton onClick={switchSides}>
-          <SwapVertRoundedIcon />
-        </IconButton>
+        <Box
+          display="flex"
+          justifyContent="center"
+          sx={{
+            mt: 1,
+          }}
+        >
+          <IconButton onClick={switchSides}>
+            <SwapVertRoundedIcon />
+          </IconButton>
+        </Box>
       )}
       <Stack sx={{ gap: 2 }}>
         <FormControl sx={{ m: 1, minWidth: 6, width: "120px" }} size="small">
